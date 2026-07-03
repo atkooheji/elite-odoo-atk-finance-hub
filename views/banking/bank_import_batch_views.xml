@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_bank_import_batch_form" model="ir.ui.view">
+        <field name="name">bank.import.batch.form</field>
+        <field name="model">bank.import.batch</field>
+        <field name="arch" type="xml">
+            <form string="Bank Import Batch">
+                <header>
+                    <button name="action_open_import_wizard" string="Upload File" type="object" class="btn-primary"/>
+                    <button name="action_open_import_wizard" string="Old Bahrain Import" type="object" class="btn-secondary"/>
+                    
+                    <button name="action_auto_reconcile" string="Auto Reconcile All" type="object" class="btn-secondary" 
+                            invisible="state == 'cancel' or line_count == 0 or reconciled_count == line_count"/>
+                    <button name="action_undo" string="Undo Import" type="object" class="btn-secondary" 
+                             invisible="state == 'cancel'"/>
+                    <button name="action_auto_create_all" string="Auto Create All" type="object" class="btn-primary" 
+                            invisible="state == 'cancel' or line_count == 0 or reconciled_count == line_count"/>
+
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_statements" type="object" class="oe_stat_button" icon="fa-bars">
+                            <field name="line_count" string="Lines" widget="statinfo"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="state" invisible="1"/>
+                            <field name="journal_id" readonly="state != 'draft'"/>
+                            <field name="date" readonly="state != 'draft'"/>
+                            <label for="import_file" string="Statement File" invisible="state != 'draft'"/>
+                            <div class="o_row" invisible="state != 'draft'">
+                                <field name="import_file" filename="import_filename" required="state == 'draft'"/>
+                                <field name="import_filename" invisible="1"/>
+                                <button name="action_import_from_file" string="Execute Import" type="object" 
+                                        class="btn-primary" icon="fa-play" 
+                                        invisible="not import_file or state != 'draft'"/>
+                            </div>
+                        </group>
+                        <group>
+                            <field name="user_id" readonly="1"/>
+                            <field name="reconciled_count" string="Auto-Matched"/>
+                            <field name="total_amount" widget="monetary" options="{'currency_field': 'company_currency_id'}"/>
+                            <field name="company_currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Imported Statements" name="statements">
+                            <field name="statement_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="date"/>
+                                    <field name="balance_start"/>
+                                    <field name="balance_end_real"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="All Lines" name="lines">
+                            <field name="line_ids" readonly="1">
+                                <list decoration-success="is_reconciled">
+                                    <field name="transaction_date" optional="show"/>
+                                    <field name="date" string="Accounting Date"/>
+                                    <field name="payment_ref"/>
+                                    <field name="amount" sum="Total"/>
+                                    <field name="is_reconciled" column_invisible="True"/>
+                                    <button name="action_auto_reconcile" string="Retry Match" type="object" icon="fa-magic" invisible="is_reconciled"/>
+                                    <button name="action_auto_create_record" string="Auto Create" type="object" icon="fa-plus-circle" invisible="is_reconciled" class="text-primary"/>
+                                    <button name="action_link_iban" string="Link IBAN" type="object" icon="fa-bank" invisible="is_reconciled"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_bank_import_batch_list" model="ir.ui.view">
+        <field name="name">bank.import.batch.list</field>
+        <field name="model">bank.import.batch</field>
+        <field name="arch" type="xml">
+            <list string="Bank Import Batches">
+                <header>
+                    <button name="%(atk_finance_hub.action_bank_statement_import_wizard)d" string="Old Bahrain Import" type="action" class="btn-secondary" icon="fa-history"/>
+                    <button name="%(atk_finance_hub.action_bank_statement_import_wizard)d" 
+                            string="Upload Bank Statements" type="action" 
+                            class="btn-primary" icon="fa-upload"/>
+                </header>
+
+                <field name="name"/>
+                <field name="journal_id"/>
+                <field name="date"/>
+                <field name="line_count" sum="Total Lines"/>
+                <field name="reconciled_count" string="Matched"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'done'" decoration-danger="state == 'cancel'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_bank_import_batch" model="ir.actions.act_window">
+        <field name="name">Bank Import Batches</field>
+        <field name="res_model">bank.import.batch</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Manage your bank statement import history.
+            </p>
+        </field>
+    </record>
+</odoo>

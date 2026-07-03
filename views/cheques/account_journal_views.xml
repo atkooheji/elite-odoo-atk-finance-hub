@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_journal_form_inherited_bahrain_checks" model="ir.ui.view">
+        <field name="name">account.journal.form.inherited.bahrain.checks</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='advanced_settings']" position="after">
+                <page string="Check Printing Layout" name="check_printing_layout" invisible="type != 'bank'">
+                    <group>
+                        <group string="General Settings">
+                            <field name="check_layout_mode" widget="radio"/>
+                            <field name="check_template_id" invisible="check_layout_mode != 'custom'"/>
+                            <field name="check_next_number" invisible="check_layout_mode != 'custom'"/>
+                            <button name="action_print_test_check" type="object" string="Print Test Check" class="btn-secondary" invisible="check_layout_mode != 'custom'"/>
+                            <button name="action_save_as_template" type="object" string="Save as New Template" class="btn-primary" invisible="check_layout_mode != 'custom'"/>
+
+                            <field name="check_font_family"/>
+                            <field name="check_font_size"/>
+                        </group>
+                        <group string="A/C Payee Configuration">
+                             <field name="check_ac_payee"/>
+                             <field name="check_ac_payee_top" invisible="not check_ac_payee"/>
+                             <field name="check_ac_payee_left" invisible="not check_ac_payee"/>
+                        </group>
+                        <group string="Date Coordinates">
+                            <field name="check_date_top"/>
+                            <field name="check_date_left"/>
+                            <field name="check_date_letter_spacing"/>
+                        </group>
+                        <group string="Payee Coordinates">
+                            <field name="check_payee_top"/>
+                            <field name="check_payee_left"/>
+                            <field name="check_payee_width"/>
+                        </group>
+                        <group string="Amount (Words) Coordinates">
+                            <field name="check_amount_words_top"/>
+                            <field name="check_amount_words_left"/>
+                            <field name="check_amount_words_width"/>
+                            <field name="check_amount_words_line_height"/>
+                            <field name="check_amount_words_indent"/>
+                        </group>
+                        <group string="Amount (Figures) Coordinates">
+                            <field name="check_amount_top"/>
+                            <field name="check_amount_left"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

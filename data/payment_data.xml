@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- BenefitPay Method -->
+    <record id="payment_method_benefit" model="payment.method">
+        <field name="name">BenefitPay</field>
+        <field name="code">benefit</field>
+        <field name="sequence">10</field>
+        <field name="active">True</field>
+    </record>
+
+    <!-- Apple Pay Method -->
+    <record id="payment_method_apple" model="payment.method">
+        <field name="name">Apple Pay</field>
+        <field name="code">apple</field>
+        <field name="sequence">20</field>
+        <field name="active">True</field>
+    </record>
+
+    <!-- Google Pay Method -->
+    <record id="payment_method_google" model="payment.method">
+        <field name="name">Google Pay</field>
+        <field name="code">google</field>
+        <field name="sequence">30</field>
+        <field name="active">True</field>
+    </record>
+
+    <!-- ATK Unified Hub Provider -->
+    <record id="payment_provider_atk_pay" model="payment.provider">
+        <field name="name">ATK Professional Payment Hub</field>
+        <field name="code">atk_pay</field>
+        <field name="state">test</field>
+        <field name="is_published">True</field>
+        <field name="redirect_form_view_id" ref="payment_templates_redirect_form"/>
+        <field name="payment_method_ids" eval="[(6, 0, [
+            ref('payment_method_benefit'),
+            ref('payment_method_apple'),
+            ref('payment_method_google')
+        ])]"/>
+    </record>
+</odoo>

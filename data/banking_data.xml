@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="seq_bank_import_batch" model="ir.sequence">
+        <field name="name">Bank Import Batch</field>
+        <field name="code">bank.import.batch</field>
+        <field name="prefix">BANK/IMP/%(range_year)s/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

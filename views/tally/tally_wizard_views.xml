@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Import Wizard -->
+    <record id="view_tally_import_wizard_form" model="ir.ui.view">
+        <field name="name">tally.import.wizard.form</field>
+        <field name="model">tally.import.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Import Tally Data">
+                <sheet>
+                    <group>
+                        <field name="file_type" widget="radio" options="{'horizontal': true}"/>
+                        <field name="import_type" widget="radio" options="{'horizontal': true}"/>
+                        <field name="import_file" filename="file_name"/>
+                        <field name="file_name" invisible="1"/>
+                        <field name="journal_id" invisible="import_type == 'masters'" required="import_type != 'masters'"/>
+                        <field name="date_to" string="Entry Date" invisible="import_type == 'masters'"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                    </group>
+                    <group string="Options" invisible="import_type == 'masters'">
+                        <field name="is_opening_entry" invisible="import_type not in ['trialbalance', 'opening']"/>
+                        <field name="auto_balance" invisible="import_type not in ['trialbalance', 'opening']"/>
+                        <field name="balancing_account_id" invisible="not auto_balance" required="auto_balance and import_type in ['trialbalance', 'opening']"/>
+                        <field name="auto_post"/>
+                        <field name="skip_unbalanced"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_import" string="Import" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_tally_import_wizard" model="ir.actions.act_window">
+        <field name="name">Import Tally Data</field>
+        <field name="res_model">tally.import.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Audit Wizard -->
+    <record id="view_tally_audit_wizard_form" model="ir.ui.view">
+        <field name="name">tally.audit.wizard.form</field>
+        <field name="model">tally.audit.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Tally Audit">
+                <sheet>
+                    <group invisible="result_ids">
+                        <field name="import_file" filename="file_name"/>
+                        <field name="file_name" invisible="1"/>
+                        <field name="comparison_date"/>
+                    </group>
+                    <notebook invisible="not result_ids">
+                        <page string="Audit Results">
+                            <field name="result_ids">
+                                <list decoration-danger="status == 'mismatch'" decoration-warning="status == 'unmapped'" decoration-success="status == 'match'">
+                                    <field name="account_name"/>
+                                    <field name="odoo_account_id"/>
+                                    <field name="tally_balance"/>
+                                    <field name="odoo_balance"/>
+                                    <field name="difference"/>
+                                    <field name="status" widget="badge"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button name="action_compare" string="Compare" type="object" class="btn-primary" invisible="result_ids"/>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_tally_audit_wizard" model="ir.actions.act_window">
+        <field name="name">Tally Audit Comparison</field>
+        <field name="res_model">tally.audit.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="payment_provider_atk_pay_form" model="ir.ui.view">
+        <field name="name">payment.provider.atk.pay.form</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='provider_credentials']" position="inside">
+                <div colspan="2" invisible="code != 'atk_pay'">
+                    <notebook>
+                        <!-- ================= BENEFITPAY TAB ================= -->
+                        <page name="benefitpay_tab" string="BenefitPay Core">
+                            <group>
+                                <group string="Merchant Credentials">
+                                    <field name="benefit_merchant_id" required="code == 'atk_pay'"/>
+                                    <field name="benefit_app_id" required="code == 'atk_pay'"/>
+                                    <field name="benefit_secret_key" password="True" required="code == 'atk_pay'"/>
+                                    <field name="benefit_guide_url" widget="url" readonly="1"/>
+                                </group>
+                                <group string="Security Checklist">
+                                    <div class="o_settings_container">
+                                        <div class="bg-light p-3 border rounded shadow-sm">
+                                            <p class="mb-1 text-primary fw-bold">1. Merchant Portal</p>
+                                            <p class="text-muted small">Verify your IDs match the Benefit Business Dashboard.</p>
+                                            <p class="mb-1 text-primary fw-bold">2. Whitelisting</p>
+                                            <p class="text-muted small">Ensure your current domain is approved by Benefit.</p>
+                                        </div>
+                                    </div>
+                                </group>
+                            </group>
+                        </page>
+
+                        <!-- ================= APPLE PAY TAB ================= -->
+                        <page name="apple_pay_tab" string="Apple Pay">
+                            <group>
+                                <group string="Apple Merchant Account">
+                                    <field name="apple_merchant_id"/>
+                                    <field name="apple_merchant_cert"/>
+                                    <field name="apple_domain_verification"/>
+                                    <field name="apple_guide_url" widget="url" readonly="1"/>
+                                </group>
+                                <group string="Validation Guide">
+                                    <div class="bg-light p-3 border rounded">
+                                        <p class="mb-0 text-dark small font-weight-bold">Domain Verification Required</p>
+                                        <p class="text-muted x-small">Apple requires a special verification file in your /.well-known/ folder.</p>
+                                    </div>
+                                </group>
+                            </group>
+                        </page>
+
+                        <!-- ================= GOOGLE PAY TAB ================= -->
+                        <page name="google_pay_tab" string="Google Pay">
+                            <group>
+                                <group string="Google Merchant Credentials">
+                                    <field name="google_merchant_id"/>
+                                    <field name="google_merchant_name"/>
+                                    <field name="google_guide_url" widget="url" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

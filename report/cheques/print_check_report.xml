@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_bahrain_checks" model="report.paperformat">
+        <field name="name">Bahrain Checks (179x89mm)</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">89</field>
+        <field name="page_width">179</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">0</field>
+        <field name="margin_right">0</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <!-- Master check printing configuration -->
+    <record id="action_print_check_custom" model="ir.actions.report">
+        <field name="name">Bahrain Bank Check</field>
+        <field name="model">account.payment</field>
+        <field name="report_type">qweb-html</field>
+        <field name="report_name">atk_finance_hub.report_check_template</field>
+        <field name="report_file">atk_finance_hub.report_check_template</field>
+        <field name="print_report_name">'%s - %s-Check ' % (object.partner_id.name, object.journal_id.name)</field>
+        <field name="binding_model_id" ref="account.model_account_payment"/>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="paperformat_bahrain_checks"/>
+    </record>
+</odoo>

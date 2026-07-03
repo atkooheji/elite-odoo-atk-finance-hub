@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+        <record id="tally_import_batch_rule" model="ir.rule">
+            <field name="name">Tally Import Batch multi-company</field>
+            <field name="model_id" ref="model_tally_import_batch"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <record id="tally_account_mapping_rule" model="ir.rule">
+            <field name="name">Tally Account Mapping multi-company</field>
+            <field name="model_id" ref="model_tally_account_mapping"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <record id="tally_group_mapping_rule" model="ir.rule">
+            <field name="name">Tally Group Mapping multi-company</field>
+            <field name="model_id" ref="model_tally_group_mapping"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <record id="tally_voucher_mapping_rule" model="ir.rule">
+            <field name="name">Tally Voucher Mapping multi-company</field>
+            <field name="model_id" ref="model_tally_voucher_mapping"/>
+            <field name="domain_force">['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]</field>
+        </record>
+</odoo>

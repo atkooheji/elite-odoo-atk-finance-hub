@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_check_template">
+        <t t-call="web.html_container">
+            <style>
+                @media print {
+                    .no-print { display: none !important; }
+                }
+                .no-print {
+                    padding: 20px;
+                    background: #f8f9fa;
+                    border-bottom: 2px solid #1a237e;
+                    text-align: center;
+                }
+            </style>
+            <div class="no-print">
+                <button onclick="window.print();" class="btn btn-primary btn-lg" style="padding: 10px 30px; font-weight: bold; border-radius: 5px; background-color: #1a237e; border-color: #1a237e; color: white; cursor: pointer;">
+                    <i class="fa fa-print"></i> PRINT TO CHECK PRINTER
+                </button>
+            </div>
+            <t t-foreach="docs" t-as="o">
+                <t t-set="journal" t-value="o.journal_id"/>
+                <!-- Dynamic Style Block -->
+                <div class="page" t-attf-style="position: relative; width: 179mm; height: 89mm; font-family: {{ journal.check_font_family or 'sans-serif' }}; font-size: {{ journal.check_font_size or 14 }}px; color: black; overflow: hidden;">
+                    
+                    <!-- Date -->
+                    <div t-attf-style="position: absolute; top: {{ journal.check_date_top }}mm; left: {{ journal.check_date_left }}mm; font-size: 16px; font-family: monospace; white-space: nowrap;">
+                        <t t-if="o.date">
+                            <t t-foreach="o.date.strftime('%d%m%Y')" t-as="digit">
+                                <span t-attf-style="display: inline-block; width: {{ journal.check_date_letter_spacing }}mm; text-align: center;" t-esc="digit"/>
+                            </t>
+                        </t>
+                    </div>
+
+                    <!-- Payee (Party Name) -->
+                    <div t-attf-style="position: absolute; top: {{ journal.check_payee_top }}mm; left: {{ journal.check_payee_left }}mm; width: {{ journal.check_payee_width }}mm; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        <span t-esc="o.partner_id.name"/>
+                    </div>
+
+                    <!-- Amount in Words -->
+                    <div t-attf-style="position: absolute; top: {{ journal.check_amount_words_top }}mm; left: {{ journal.check_amount_words_left }}mm; width: {{ journal.check_amount_words_width }}mm; line-height: {{ journal.check_amount_words_line_height }}mm; font-weight: bold; text-indent: {{ journal.check_amount_words_indent }}mm; overflow-wrap: break-word;">
+                        <span t-esc="o.check_amount_in_words"/>
+                    </div>
+
+                    <!-- Amount Figures -->
+                    <div t-attf-style="position: absolute; top: {{ journal.check_amount_top }}mm; left: {{ journal.check_amount_left }}mm; width: 45mm; text-align: left; font-weight: bold; font-size: 18px;">
+                         <span t-esc="'{:,.3f}'.format(o.amount)"/>
+                    </div>
+
+                    <!-- A/C Payee Stamp -->
+                    <t t-if="journal.check_ac_payee">
+                        <div t-attf-style="position: absolute; top: {{ journal.check_ac_payee_top }}mm; left: {{ journal.check_ac_payee_left }}mm; text-align: center; font-weight: bold; width: 40mm;">
+                            <div style="border-top: 1.5px solid black; border-bottom: 1.5px solid black; padding: 2px 0; letter-spacing: 1px; font-size: 14px; text-transform: uppercase;">
+                                A/C Payee
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

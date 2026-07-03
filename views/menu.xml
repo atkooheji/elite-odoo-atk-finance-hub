@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<menuitem id="menu_finance_hub_root" 
+          name="Corporate Treasury" 
+          web_icon="atk_finance_hub,static/description/icon.png" 
+          groups="account.group_account_user" 
+          sequence="10"/>
+
+<menuitem id="atk_finance_dashboard.menu_finance_dashboard_root" 
+          name="Financial Intelligence Center" 
+          parent="menu_finance_hub_root" 
+          sequence="0"/>
+
+<menuitem id="menu_finance_hub_banking_hub" name="Banking Hub" parent="menu_finance_hub_root" sequence="10"/>
+<menuitem id="menu_finance_hub_bank_parsers" name="Upload Statements" parent="menu_finance_hub_banking_hub" action="action_bank_statement_import_wizard" sequence="20" groups="base.group_no_one"/>
+<menuitem id="menu_finance_hub_bank_batches" name="Bank Import Batches" parent="menu_finance_hub_banking_hub" action="action_bank_import_batch" sequence="5"/>
+<menuitem id="menu_finance_hub_banking_config" name="Configuration" parent="menu_finance_hub_banking_hub" sequence="100"/>
+<menuitem id="menu_finance_hub_bank_partner_mapping" name="Partner Mappings" parent="menu_finance_hub_banking_config" action="action_bank_partner_mapping" sequence="10"/>
+<menuitem id="menu_finance_hub_cheques" name="Cheque Management" parent="menu_finance_hub_root" sequence="20"/>
+<menuitem id="menu_finance_hub_cheques_ops" name="Operations" parent="menu_finance_hub_cheques" sequence="10"/>
+<menuitem id="menu_finance_hub_check_log" name="Cheque Log" parent="menu_finance_hub_cheques_ops" action="account.action_account_payments" sequence="10"/>
+<menuitem id="menu_finance_hub_cheques_config" name="Configuration" parent="menu_finance_hub_cheques" sequence="100"/>
+<menuitem id="menu_finance_hub_check_templates" name="Cheque Templates" parent="menu_finance_hub_cheques_config" action="action_account_check_template" sequence="10"/>
+<menuitem id="menu_finance_hub_tally" name="Tally Integration" parent="menu_finance_hub_root" sequence="30"/>
+<menuitem id="menu_finance_hub_tally_ops" name="Operations" parent="menu_finance_hub_tally" sequence="10"/>
+<menuitem id="menu_finance_hub_tally_import" name="Import Sessions" parent="menu_finance_hub_tally_ops" action="action_tally_import_batch" sequence="10"/>
+<menuitem id="menu_finance_hub_tally_audit" name="Audit Comparison" parent="menu_finance_hub_tally_ops" action="action_tally_audit_wizard" sequence="20"/>
+<menuitem id="menu_finance_hub_tally_config" name="Configuration" parent="menu_finance_hub_tally" sequence="100"/>
+<menuitem id="menu_finance_hub_tally_account_mapping" name="Account Mappings" parent="menu_finance_hub_tally_config" action="action_tally_account_mapping" sequence="10"/>
+<menuitem id="menu_finance_hub_tally_group_mapping" name="Group Mappings" parent="menu_finance_hub_tally_config" action="action_tally_group_mapping" sequence="20"/>
+<menuitem id="menu_finance_hub_tally_voucher_mapping" name="Voucher Mappings" parent="menu_finance_hub_tally_config" action="action_tally_voucher_mapping" sequence="30"/>
+<menuitem id="menu_finance_hub_payments" name="Payment Gateway" parent="menu_finance_hub_root" sequence="40"/>
+<menuitem id="menu_finance_hub_payments_ops" name="Operations" parent="menu_finance_hub_payments" sequence="10"/>
+<menuitem id="menu_finance_hub_payment_providers" name="Providers (BenefitPay)" parent="menu_finance_hub_payments_ops" action="payment.action_payment_provider" sequence="10"/>
+<menuitem id="menu_finance_hub_payment_tx" name="Transactions" parent="menu_finance_hub_payments_ops" action="payment.action_payment_transaction" sequence="20"/>
+
+<menuitem id="menu_finance_hub_insights" name="Dashboard &amp; Insights" parent="menu_finance_hub_root" sequence="0"/>
+<menuitem id="menu_finance_hub_dashboard" name="Executive Dashboard" parent="menu_finance_hub_insights" action="atk_finance_dashboard.action_finance_master_dashboard_v2" sequence="10"/>
+</odoo>

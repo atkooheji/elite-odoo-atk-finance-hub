@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Bahrain Master Template (Universal) -->
+    <record id="check_template_bahrain" model="account.check.template">
+        <field name="name">Bahrain Master (Universal)</field>
+        <field name="date_top">-1.50</field>
+        <field name="date_left">110.00</field>
+        <field name="date_letter_spacing">5.50</field>
+        <field name="payee_top">11.00</field>
+        <field name="payee_left">30.00</field>
+        <field name="payee_width">120.0</field>
+        <field name="amount_words_top">22.00</field>
+        <field name="amount_words_left">5.00</field>
+        <field name="amount_words_width">90.00</field>
+        <field name="amount_words_line_height">10.00</field>
+        <field name="amount_words_indent">5.00</field>
+        <field name="amount_top">35.00</field>
+        <field name="amount_left">135.00</field>
+        <field name="font_size">16</field>
+        <field name="ac_payee">True</field>
+        <field name="ac_payee_top">5.00</field>
+        <field name="ac_payee_left">5.00</field>
+    </record>
+</odoo>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        :root {
+            --atk-primary: #1a237e;
+            --atk-secondary: #0d47a1;
+            --atk-accent: #2979ff;
+            --atk-text: #37474f;
+            --atk-bg: #f5f7f9;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--atk-text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        header {
+            text-align: center;
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--atk-primary) 0%, var(--atk-secondary) 100%);
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 60px;
+            box-shadow: 0 20px 40px rgba(26, 35, 126, 0.2);
+        }
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        header p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title h2 {
+            font-size: 2.25rem;
+            color: var(--atk-primary);
+            font-weight: 700;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--atk-accent);
+            margin-bottom: 20px;
+            display: block;
+        }
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--atk-primary);
+        }
+        .feature-card ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+        .feature-card li {
+            margin-bottom: 8px;
+        }
+        .badge {
+            display: inline-block;
+            background: var(--atk-accent);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid #eee;
+            margin-top: 60px;
+        }
+        .hero-img {
+            width: 100%;
+            height: 400px;
+            background: #eee;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="badge">Elite 2026 Ready</div>
+            <h1>ATK Finance Hub</h1>
+            <p>The unified ecosystem for banking, payments, and financial reconciliation in Bahrain.</p>
+        </header>
+
+        <div class="section-title">
+            <h2>Consolidated Financial Power</h2>
+            <p>Five specialized modules redesigned into one seamless engine.</p>
+        </div>
+
+        <div class="feature-grid">
+            <!-- Banking & Parsers -->
+            <div class="feature-card">
+                <div class="badge">Banking</div>
+                <h3>Bahraini Bank Parsers</h3>
+                <p>Automated statement processing for local banks.</p>
+                <ul>
+                    <li>Al Salam Bank (Native API/PDF)</li>
+                    <li>BenefitPay Reconciliation</li>
+                    <li>Custom XML/CSV Import Engines</li>
+                    <li>Automated Ledger Mapping</li>
+                </ul>
+            </div>
+
+            <!-- Cheque Management -->
+            <div class="feature-card">
+                <div class="badge">Assets</div>
+                <h3>Cheque Management</h3>
+                <p>Full lifecycle tracking for PDC and Current cheques.</p>
+                <ul>
+                    <li>Inward/Outward Tracking</li>
+                    <li>Automated Status Alerts</li>
+                    <li>Bank Clearance Workflows</li>
+                    <li>IFRS Compliant Reporting</li>
+                </ul>
+            </div>
+
+            <!-- Unified Payments -->
+            <div class="feature-card">
+                <div class="badge">Payments</div>
+                <h3>Unified Payment Hub</h3>
+                <p>Direct-to-bank payment orchestration.</p>
+                <ul>
+                    <li>Consolidated BenefitPay Portal</li>
+                    <li>Apple/Google Pay Integration</li>
+                    <li>Real-time Transaction Tracking</li>
+                    <li>Auto-Generated Receipts</li>
+                </ul>
+            </div>
+
+            <!-- Tally Sync -->
+            <div class="feature-card">
+                <div class="badge">Integration</div>
+                <h3>External Sync (Tally)</h3>
+                <p>Bridge your Odoo logic with external ERP systems.</p>
+                <ul>
+                    <li>Incremental Data Sync</li>
+                    <li>Audit Trail Generation</li>
+                    <li>Master Data Mapping</li>
+                    <li>Error Recovery Center</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section-title">
+            <h2>Technically Superior Refactoring</h2>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card" style="background-color: var(--atk-bg); border-left: 5px solid var(--atk-primary);">
+                <h3>No Data Loss</h3>
+                <p>We preserve the exact database table structures of your previous apps. Upgrading to the Hub is seamless and carries 0 risk to historical data.</p>
+            </div>
+            <div class="feature-card" style="background-color: var(--atk-bg); border-left: 5px solid var(--atk-accent);">
+                <h3>High Performance</h3>
+                <p>Optimized for Odoo 19 with reduced registry overhead and combined asset loading for faster UI response times.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>Part of the <strong>ATK Elite Suite</strong> by AntiGravity Technologies.</p>
+        </header>
+    </div>
+</body>
+</html>

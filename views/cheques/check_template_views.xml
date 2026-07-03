@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_check_template_list" model="ir.ui.view">
+        <field name="name">account.check.template.list</field>
+        <field name="model">account.check.template</field>
+        <field name="arch" type="xml">
+            <list string="Check Templates">
+                <field name="name"/>
+                <field name="font_family"/>
+                <field name="font_size"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_account_check_template_form" model="ir.ui.view">
+        <field name="name">account.check.template.form</field>
+        <field name="model">account.check.template</field>
+        <field name="arch" type="xml">
+            <form string="Check Template">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Template Name..."/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Font Settings">
+                            <field name="font_family"/>
+                            <field name="font_size"/>
+                        </group>
+                        <group string="A/C Payee">
+                             <field name="ac_payee"/>
+                             <field name="ac_payee_top" invisible="not ac_payee"/>
+                             <field name="ac_payee_left" invisible="not ac_payee"/>
+                        </group>
+                        <group string="Date coordinates">
+                            <field name="date_top"/>
+                            <field name="date_left"/>
+                            <field name="date_letter_spacing"/>
+                        </group>
+                        <group string="Payee coordinates">
+                            <field name="payee_top"/>
+                            <field name="payee_left"/>
+                            <field name="payee_width"/>
+                        </group>
+                        <group string="Amount Words coordinates">
+                            <field name="amount_words_top"/>
+                            <field name="amount_words_left"/>
+                            <field name="amount_words_width"/>
+                            <field name="amount_words_line_height"/>
+                            <field name="amount_words_indent"/>
+                        </group>
+                        <group string="Amount Figures coordinates">
+                            <field name="amount_top"/>
+                            <field name="amount_left"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_account_check_template" model="ir.actions.act_window">
+        <field name="name">Check Templates</field>
+        <field name="res_model">account.check.template</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

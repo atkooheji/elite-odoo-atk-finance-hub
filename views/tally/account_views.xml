@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_list_inherit_tally" model="ir.ui.view">
+        <field name="name">account.account.list.inherit.tally</field>
+        <field name="model">account.account</field>
+        <field name="inherit_id" ref="account.view_account_list"/>
+        <field name="arch" type="xml">
+            <list position="inside">
+                <header>
+                    <button name="action_auto_grouping" string="Auto Grouping" type="object" class="btn-primary" groups="account.group_account_manager"/>
+                    <button name="action_reorganize_coa" string="Reorganize COA (IFRS)" type="object" class="btn-secondary" groups="account.group_account_manager"/>
+                    <button name="action_learn_from_coa" string="Learn from COA" type="object" class="btn-secondary" groups="account.group_account_manager"/>
+                    <button name="action_clear_all_accounts" string="Clean COA" type="object" class="btn-secondary" groups="account.group_account_manager" confirm="Are you sure you want to delete ALL accounts for this company?"/>
+                </header>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_account_form_inherit_tally" model="ir.ui.view">
+        <field name="name">account.account.form.inherit.tally</field>
+        <field name="model">account.account</field>
+        <field name="inherit_id" ref="account.view_account_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='group_id']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="Tally Mapping" name="tally_mapping" groups="account.group_account_manager">
+                    <field name="tally_mapping_ids" readonly="1">
+                        <list>
+                            <field name="tally_ledger_name"/>
+                            <field name="tally_group"/>
+                            <field name="company_id"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

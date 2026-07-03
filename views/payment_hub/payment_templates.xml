@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="payment_templates_redirect_form">
+        <form t-att-action="api_url" method="post">
+            <t t-foreach="list(dict(kwargs).items())" t-as="kv">
+                <input type="hidden" t-att-name="kv[0]" t-att-value="kv[1]"/>
+            </t>
+        </form>
+    </template>
+</odoo>

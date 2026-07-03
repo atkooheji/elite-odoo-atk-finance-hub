@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_bank_statement_import_wizard_form" model="ir.ui.view">
+        <field name="name">bank.statement.import.wizard.form</field>
+        <field name="model">bank.statement.import.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Import Bank Statement (Bahrain)">
+                <div class="alert alert-primary" role="alert">
+                    <i class="fa fa-magic me-2" aria-label="Magic Icon"/>
+                    <b>Automatic Mode:</b> Simply upload one or many files and click <b>Automatic Import</b>. Odoo will automatically detect the bank and match transactions.
+                </div>
+                <group>
+                    <group>
+                        <field name="journal_id" options="{'no_create': True}"/>
+                        <field name="auto_reconcile" widget="boolean_toggle"/>
+                    </group>
+                    <group>
+                        <field name="attachment_ids" widget="many2many_binary" string="Upload Statements (Excel/PDF)"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_import" string="Automatic Import" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_bank_statement_import_wizard" model="ir.actions.act_window">
+        <field name="name">Import Bank Statement (Bahrain)</field>
+        <field name="res_model">bank.statement.import.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- This menu will be updated in the final Unified Menu step -->
+</odoo>

@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bank_statement_import_wizard,bank.statement.import.wizard,model_bank_statement_import_wizard,account.group_account_user,1,1,1,1
+access_bank_import_batch,bank.import.batch,model_bank_import_batch,account.group_account_user,1,1,1,1
+access_bank_partner_mapping,bank.partner.mapping,model_bank_partner_mapping,account.group_account_manager,1,1,1,1
+access_account_check_template,account.check.template,model_account_check_template,account.group_account_manager,1,1,1,1
+access_account_check_template_user,account.check.template.user,model_account_check_template,base.group_user,1,1,1,1
+access_tally_account_mapping_user,tally.account.mapping.user,model_tally_account_mapping,base.group_user,1,1,1,1
+access_tally_import_wizard_user,tally.import.wizard.user,model_tally_import_wizard,base.group_user,1,1,1,1
+access_tally_audit_result_user,tally.audit.result.user,model_tally_audit_result,base.group_user,1,1,1,1
+access_tally_audit_wizard_user,tally.audit.wizard.user,model_tally_audit_wizard,base.group_user,1,1,1,1
+access_tally_import_batch_user,tally.import.batch.user,model_tally_import_batch,base.group_user,1,1,1,1
+access_tally_group_mapping_user,tally.group.mapping.user,model_tally_group_mapping,base.group_user,1,1,1,1
+access_print_check_bh_wizard,print.check.bh.wizard,model_print_check_bh_wizard,account.group_account_user,1,1,1,1
+access_tally_voucher_mapping_user,tally.voucher.mapping.user,model_tally_voucher_mapping,base.group_user,1,1,1,1
+access_tally_voucher_type_mapping_user,tally.voucher.type.mapping.user,model_tally_voucher_type_mapping,base.group_user,1,1,1,1
