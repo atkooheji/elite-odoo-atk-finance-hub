@@ -1,0 +1,48 @@
+# --- Auto-Sync Standard Ignore Rules ---
+# Credentials & Secrets
+.env
+.env.*
+secrets.*
+credentials.json
+*.private.*
+.ids-next-credentials.json
+
+# Dependencies
+node_modules/
+bower_components/
+jspm_packages/
+web_modules/
+
+# Python Caches & Virtual Envs
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Logs and temporary files
+*.log
+*.sqlite3
+*.sqlite
+DumpStack.log.tmp
+*.tmp
+
+# Editors and IDEs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# OS System Files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
